@@ -4,6 +4,11 @@ const router = express.Router();
 const users = require("../data/users");
 const error = require("../utilities/error");
 
+//Had to import the module to users routes to handle the get request for
+///api/users/:id/posts,
+
+const posts = require("../data/posts");
+
 router
   .route("/")
   .get((req, res) => {
@@ -80,5 +85,21 @@ router
     if (user) res.json(user);
     else next();
   });
+
+  router
+    .route("/:id/posts")
+    .get((req,res,next)=>{ 
+      console.log(req.params.id + ". user is being retrieved")
+      const post = [];
+      for(let i = 0; i < posts.length; i++){
+        if(req.params.id == posts[i].userId){
+          post.push(posts[i]);
+          console.log(posts[i].userId);
+        }else{
+          continue;
+        }
+      }  
+      res.json(post)
+    })
 
 module.exports = router;

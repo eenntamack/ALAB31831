@@ -3,6 +3,8 @@ const router = express.Router();
 
 const posts = require("../data/posts");
 const error = require("../utilities/error");
+//users
+
 
 router
   .route("/")
@@ -78,20 +80,6 @@ router
   });
 
   
-  router
-    .route("/:id/posts")
-    .get((req,res,next)=>{ 
-      console.log(req.params.id + ". user is being retrieved")
-      const post = [];
-      for(let i = 0; i < posts.length; i++){
-        if(req.params.id == posts[i].userId){
-          post.push(posts[i]);
-          console.log(posts[i].userId)
-        }else{
-          continue
-        }
-      }  
-      res.json(post)
-    })
+  
 
 module.exports = router;
