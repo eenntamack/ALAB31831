@@ -1,10 +1,12 @@
-# Node.js template
+# ALAB318.3.1
 
-This is a Node.js project.
+A lab practicing the crud requests in an express application
 
-Add your [configuration](https://codesandbox.io/docs/projects/learn/setting-up/tasks) to optimize it for [CodeSandbox](https://codesandbox.io/p/dashboard).
+## Topics learned and used in this project
 
-## Resources
+1. CRUD
 
-- [CodeSandbox — Docs](https://codesandbox.io/docs/projects)
-- [CodeSandbox — Discord](https://discord.gg/Ggarp3pX5H)
+2. REST APIs
+
+3. Express Middleware
+
