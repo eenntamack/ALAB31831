@@ -108,7 +108,11 @@ router
   router
   .route("/:id/comments")
   .get((req,res)=>{
-    const userComments = comments.filter(comment => parseInt(req.params.id) === comment.userId);
+    let userComments = comments.filter(comment => parseInt(req.params.id) === comment.userId);
+
+    if(req.query.postId){
+      userComments.filter(comment => parseInt(req.query.postId) === comments.postId);
+    }
     res.json(userComments);
   })
 
