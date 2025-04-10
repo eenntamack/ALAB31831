@@ -8,7 +8,6 @@ const error = require("../utilities/error");
 router
 .route("/")
 .get((req,res,next)=>{
-
     if(req.query.userId && !req.query.postId){
         const comment =[];
 
@@ -34,10 +33,9 @@ router
         res.json(comments);
         }
     }
-    
-}).post((req,res,next)=>{
+})
+router.route("/").post((req,res,next)=>{
     console.log("starting")
-    const newComments = comments;
     const comment = {
         id : comments.length + 1,
         userId : req.query.userId,
@@ -46,7 +44,7 @@ router
     }
     console.log("adding data")
     newComments.push(comment);
-    res.json(newComments); 
+    res.json(comments); 
 })
 
 

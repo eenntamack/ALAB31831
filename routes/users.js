@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 const users = require("../data/users");
+const comments = require("../data/comments");
 const error = require("../utilities/error");
+
 
 //Had to import the module to users routes to handle the get request for
 ///api/users/:id/posts,
@@ -101,5 +103,13 @@ router
       }  
       res.json(post)
     })
+
+   //below filtered all the comments by userId
+  router
+  .route("/:id/comments")
+  .get((req,res)=>{
+    const userComments = comments.filter(comment => parseInt(req.params.id) === comment.userId);
+    res.json(userComments);
+  })
 
 module.exports = router;
