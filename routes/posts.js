@@ -16,8 +16,21 @@ router
         type: "GET",
       },
     ];
-
-    res.json({ posts, links });
+    let updatedData = posts;
+    const userId = req.query.userId;
+    if(userId){
+      updatedData = [];
+      for(let i = 0; i < posts.length;i++){
+        if(parseInt(userId) == posts[i].userId){
+          updatedData.push(posts[i]);
+        }else{
+          continue;
+        }
+      }
+      res.json({ posts: updatedData});
+    }else{
+      res.json({ posts: updatedData, links });
+    }
   })
   .post((req, res, next) => {
     if (req.body.userId && req.body.title && req.body.content) {
@@ -79,7 +92,7 @@ router
     else next();
   });
 
-  
+
   
 
 module.exports = router;

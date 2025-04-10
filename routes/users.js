@@ -92,7 +92,7 @@ router
       console.log(req.params.id + ". user is being retrieved")
       const post = [];
       for(let i = 0; i < posts.length; i++){
-        if(req.params.id == posts[i].userId){
+        if(req.params.id == posts[i].id){
           post.push(posts[i]);
           console.log(posts[i].userId);
         }else{
