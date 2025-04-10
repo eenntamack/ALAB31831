@@ -6,6 +6,10 @@ const error = require("../utilities/error");
 const comments = require("../data/comments");
 //users
 
+//In get request, handled whether userId query is used to show 
+// desired posts data 
+//show all data with availible links to use for posts or show data by given
+//userId param
 
 router
   .route("/")
@@ -18,6 +22,7 @@ router
       },
     ];
     let updatedData = posts;
+    /****------------------- */
     const userId = req.query.userId;
     if(userId){
       updatedData = [];
@@ -29,6 +34,7 @@ router
         }
       }
       res.json({ posts: updatedData});
+      /*********------------ */
     }else{
       res.json({ posts: updatedData, links });
     }

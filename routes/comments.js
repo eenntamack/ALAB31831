@@ -34,14 +34,20 @@ router
         }
     }
 })
+/**This is the main issue i've been comming across, probably due to arrays not 
+ * saving its state every web refresh, mainly for forms, and with help of databases
+ */
 router.route("/").post((req,res,next)=>{
     console.log("starting")
-    const comment = {
-        id : comments.length + 1,
-        userId : req.query.userId,
-        postId : req.query.postId,
-        body: "Aut rerum rerum non quia fugit eos molestias dolor qui quisquam tempore sit ipsa rerum non quia autem. Qui corporis quisquam sit mollitia repellendus eum asperiores nihil qui libero praesentium et fuga unde aut quis porro et quidem fugit."
+    if(req.query.add ==="yes"){
+        const comment = {
+            id : comments.length + 1,
+            userId : req.query.userId,
+            postId : req.query.postId,
+            body: "Aut rerum rerum non quia fugit eos molestias dolor qui quisquam tempore sit ipsa rerum non quia autem. Qui corporis quisquam sit mollitia repellendus eum asperiores nihil qui libero praesentium et fuga unde aut quis porro et quidem fugit."
+        }
     }
+    
     console.log("adding data")
     newComments.push(comment);
     res.json(comments); 
