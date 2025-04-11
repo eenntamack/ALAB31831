@@ -26,6 +26,14 @@ router
             }
         }
         res.json(comment);
+        //handling case where both postid and userId parameters are used
+    }else if(req.query.postId && req.query.userId){
+        let comment = [];
+
+        comment = comments.filter(comment => comment.userId === parseInt(req.query.userId));
+        comment = comment.filter(c => c.postId === parseInt(req.query.postId));
+
+        res.json(comment);
     }else{
         if(req.query.addComment === "yes"){
             next()
@@ -35,7 +43,7 @@ router
     }
 })
 /**This is the main issue i've been comming across, probably due to arrays not 
- * saving its state every web refresh, mainly for forms, and with help of databases
+ * saving its state every web refresh, mainly for forms,or data requests and with help of databases
  */
 router.route("/").post((req,res,next)=>{
     console.log("starting")
